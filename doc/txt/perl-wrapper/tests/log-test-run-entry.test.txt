@@ -1,0 +1,37 @@
+# doc/txt/perl-wrapper/log-test-run-entry/log-test-run-entry.test.txt
+
+	doTestLogTestRunEntry
+	
+	# Purpose:
+	# ------------------------------------------------------
+   to test the doLogTestEntry function
+
+	# Prequisites
+	# ------------------------------------------------------
+   perl-wrapper core funcs , perl , bash
+
+	# Installation and configurtion
+	# ------------------------------------------------------
+   uncomment thhe log-test-run-entry action line from the 
+   src/bash/perl-wrapper/tests/run-perl-wrapper-tests.lst
+	
+   # Interdependancies
+	# ------------------------------------------------------
+
+	# Usage:
+	# ------------------------------------------------------
+   uncomment the log-test-run-entry line in the file:
+   src/bash/perl-wrapper/tests/run-perl-wrapper-tests.lst
+   src/bash/perl-wrapper/test-perl-wrapper.sh
+
+	# Developent
+	# ------------------------------------------------------
+   - todo   more failing tests ...    	
+
+	# Caveats:
+	# ------------------------------------------------------
+	none yet ...
+
+
+
+# eof file: doc/txt/perl-wrapper/log-test-run-entry/log-test-run-entry.test.txt

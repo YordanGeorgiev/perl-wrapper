@@ -1,0 +1,32 @@
+# doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.func.txt
+
+	doRunPerlWrapper
+	
+	# Purpose:
+	# ------------------------------------------------------
+	to demonstrate how the perl_wrapperl.pl entry point should be called
+
+	# Prequisites
+	# ------------------------------------------------------
+	perl_wrapper.sh core 
+
+	# Installation
+	# ------------------------------------------------------
+   check the src/perl/perl_wrapper/script/perl_wrapper_preq_checker.pl
+   for the perl modules you would need to install
+
+	# Interdependancies
+	# ------------------------------------------------------
+
+	# Usage:
+	# ------------------------------------------------------
+
+	# Development
+	# ------------------------------------------------------
+
+	# Caveats:
+	# ------------------------------------------------------
+   none known so far ...
+
+
+# eof file: doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.func.txt

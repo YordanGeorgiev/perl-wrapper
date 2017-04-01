@@ -1,0 +1,34 @@
+# doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.test.txt
+
+	doTestRunPerlWrapper
+	
+	# Purpose:
+	# ------------------------------------------------------
+	test the actual run of the run-perl-wrapper.sh 
+	to read the google spreadsheet
+
+	# Prequisites
+	# ------------------------------------------------------
+	perl , bash , for the perl modules check by:
+	perl src/perl/perl_wrapper/perl_wrapper_preq_checker.pl
+
+	# Installation
+	# ------------------------------------------------------
+
+	# Usage:
+	# ------------------------------------------------------
+	-- add the action name to test in the 
+	src/bash/perl-wrapper/tests/run-perl-wrapper-tests.lst
+	file
+
+	# Development
+	# ------------------------------------------------------
+	
+
+	# Caveats:
+	# ------------------------------------------------------
+	none , known , so far ..
+
+
+
+# eof file: doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.test.txt

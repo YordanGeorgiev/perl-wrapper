@@ -1,0 +1,36 @@
+# doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.help.txt
+
+	doHelpRunPerlWrapper
+	
+	# Purpose:
+	# ------------------------------------------------------
+	to provide a help description for the run-perl-wrapper action
+
+	# Prequisites
+	# ------------------------------------------------------
+
+	# Installation
+	# ------------------------------------------------------
+	-- todo: what are the required installations for the  
+		doHelpRunPerlWrapper function to execute without errors
+
+	# Interdependancies
+	# ------------------------------------------------------
+	-- todo: what are the interdependancies for the  
+		doHelpRunPerlWrapper function to execute without errors
+
+	# Usage:
+	# ------------------------------------------------------
+	-- todo: how can be the doHelpRunPerlWrapper used 
+
+	# Development
+	# ------------------------------------------------------
+	-- todo: what issues, todos could be pointed for development
+
+	# Caveats:
+	# ------------------------------------------------------
+	-- todo: what are the known caveats of the doHelpRunPerlWrapper functions
+
+
+
+# eof file: doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.help.txt

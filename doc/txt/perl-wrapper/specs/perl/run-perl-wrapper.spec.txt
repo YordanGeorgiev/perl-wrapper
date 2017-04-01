@@ -1,0 +1,37 @@
+# doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.spec.txt
+
+	doSpecRunPerlWrapper
+	
+	# Purpose:
+	# ------------------------------------------------------
+	-- todo: what is the purpose of the doSpecRunPerlWrapper function
+
+	# Prequisites
+	# ------------------------------------------------------
+	-- todo: what are the prerequisites of the doSpecRunPerlWrapper function
+
+	# Installation
+	# ------------------------------------------------------
+	-- todo: what are the required installations for the  
+		doSpecRunPerlWrapper function to execute without errors
+
+	# Interdependancies
+	# ------------------------------------------------------
+	-- todo: what are the interdependancies for the  
+		doSpecRunPerlWrapper function to execute without errors
+
+	# Usage:
+	# ------------------------------------------------------
+	-- todo: how can be the doSpecRunPerlWrapper used 
+
+	# Development
+	# ------------------------------------------------------
+	-- todo: what issues, todos could be pointed for development
+
+	# Caveats:
+	# ------------------------------------------------------
+	-- todo: what are the known caveats of the doSpecRunPerlWrapper functions
+
+
+
+# eof file: doc/txt/perl-wrapper/run-perl-wrapper/run-perl-wrapper.spec.txt

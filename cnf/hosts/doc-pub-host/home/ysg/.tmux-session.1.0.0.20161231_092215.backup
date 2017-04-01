@@ -1,0 +1,5 @@
+sess--perl-wrapper	win--run-isgpub	/opt/csitea/isg-pub/isg-pub.0.9.7.tst.ysg
+sess--perl-wrapper	win--vim--perl-wrapper	/opt/csitea/perl-wrapper/perl-wrapper.1.1.6.dev.ysg
+sess--perl-wrapper	win--tst--perl-wrapper	/opt/csitea/perl-wrapper/perl-wrapper.1.1.6.tst.ysg
+sess--perl-wrapper	win--prd--perl-wrapper	/opt/csitea/perl-wrapper/perl-wrapper.1.1.6.prd.ysg
+sess--perl-wrapper	win--git--perl-wrapper	/opt/csitea/perl-wrapper/perl-wrapper.1.1.6.git.ysg

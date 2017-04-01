@@ -1,0 +1,13 @@
+#file: /opt/csitea/perl-wrapper/perl-wrapper.0.0.7.dev.ysg/src/bash/perl-wrapper/perl-wrapper.cnf 
+[MainSection]
+
+#use simple var_name=var_value syntax 
+
+#the name of this application 
+wrap_name=perl-wrapper
+
+#the name of this application's db
+db_name=dev_perl-wrapper
+
+
+#eof file: /opt/csitea/perl-wrapper/perl-wrapper.0.0.7.dev.ysg/src/bash/perl-wrapper/perl-wrapper.cnf

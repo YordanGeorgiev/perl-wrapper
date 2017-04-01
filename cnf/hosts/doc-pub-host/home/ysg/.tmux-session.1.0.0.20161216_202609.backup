@@ -1,0 +1,6 @@
+sess--perl-wrapper	win---root-mgmt	/opt/csitea/perl-wrapper/perl-wrapper.1.1.6.dev.ysg
+sess--perl-wrapper	win---vim-perl-wrapper	/opt/csitea/perl-wrapper/perl-wrapper.1.1.6.dev.ysg
+sess--perl-wrapper	win---vim-tool	/opt/csitea/perl-wrapper/perl-wrapper.1.1.6.dev.ysg
+sess--tool	win---root-mgmt	/opt/csitea/tool/tool.1.1.6.dev.ysg
+sess--tool	win---vim-tool	/opt/csitea/tool/tool.1.1.6.dev.ysg
+sess--tool	win---vim-tool	/opt/csitea/tool/tool.1.1.6.dev.ysg

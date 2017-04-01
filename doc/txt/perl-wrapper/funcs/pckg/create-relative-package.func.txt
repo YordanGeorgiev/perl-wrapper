@@ -1,0 +1,38 @@
+# doc/txt/perl-wrapper/create-relative-package/create-relative-package.func.txt
+
+	doCreateRelativePackage
+	
+	# Purpose:
+	# ------------------------------------------------------
+	to create a relative zip package with the files specified
+   in the includd file
+
+	# Prequisites
+	# ------------------------------------------------------
+   gnu bash , zip , unzip , perl the include file to use, perl-wrapper core
+
+	# Installation
+	# ------------------------------------------------------
+   install the gnu bash , zip , perl , unzip binaries
+
+	# Interdependancies
+	# ------------------------------------------------------
+   gnu bash , zip , unzip , perl the include file to use , perl-wrapper core
+
+	# Usage:
+	# ------------------------------------------------------
+
+   # creates the relative package with the current env include file in met/.<<env>>.perl-wrapper
+   bash src/bash/perl-wrapper/perl-wrapper.sh -a create-relative-package -i
+
+   # creates the relative package with different include file
+   bash src/bash/perl-wrapper/perl-wrapper.sh -a create-relative-package -i met/.tmp.perl-wrapper	
+
+	# Developent
+	# ------------------------------------------------------
+
+	# Caveats:
+	# ------------------------------------------------------
+
+
+# eof file: doc/txt/perl-wrapper/create-relative-package/create-relative-package.func.txt
