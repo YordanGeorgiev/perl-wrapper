@@ -2,7 +2,7 @@ package PerlWrapper::App::Utils::ETL::PerlWrapper ;
 
 	use strict; use warnings;
 
-	my $VERSION = '1.2.0';    #doc at the end
+	my $VERSION = '1.1.0';    #doc at the end
 
 	require Exporter;
 	our @ISA = qw(Exporter);
@@ -21,7 +21,8 @@ package PerlWrapper::App::Utils::ETL::PerlWrapper ;
 	use PerlWrapper::App::Utils::IO::FileHandler ; 
 	use PerlWrapper::App::Utils::Logger ;
 	use Data::Printer ; 
-	
+
+   our $module_trace             = 1 ; 	
 	our $appConfig						= {} ; 
 	our $RunDir 						= '' ; 
 	our $ProductBaseDir 				= '' ; 
@@ -35,6 +36,7 @@ package PerlWrapper::App::Utils::ETL::PerlWrapper ;
 	our $HostName 						= '' ; 
 	our $ConfFile 						= '' ; 
 	our $objLogger						= {} ; 
+	our $objFileHandler				= {} ; 
 
 =head1 SYNOPSIS
 
@@ -62,16 +64,32 @@ package PerlWrapper::App::Utils::ETL::PerlWrapper ;
 	# --------------------------------------------------------
 	# just and example method
 	# --------------------------------------------------------
-	sub doCallExampleMethod {
-      my $self = shift ; 
+	sub doReadIssueFile {
+
+      my $self       = shift ; 
+      my $input_file = shift ; 
       my $msg  = '' ; 
-      my $ret  = 0 ; 
+      my $ret  = 1 ; 
+      
+      my $str_input_file = q{} ; 
+
+      $objLogger->doLogDebugMsg ( " START doReadIssueFile" ) ; 
 
 
-      $objLogger->doLogDebugMsg ( " START doCallExampleMethod " ) ; 
-      $objLogger->doLogDebugMsg ( " STOP  doCallExampleMethod " ) ; 
+      unless ( -r $input_file ) {
+         $msg = "the input_file : $input_file does not exist !!!" ; 
+         $objLogger->doLogFatalMsg ( $msg ) ; 
+      }
+      else {
 
-      return ( $ret , $msg ) ; 
+         $str_input_file = $objFileHandler->ReadFileReturnString ( $input_file ) ; 
+         $ret = 0 ; 
+         $msg = "read successfully input_file : $input_file" ; 
+         $objLogger->doLogDebugMsg ( $str_input_file ) if ( $module_trace == 1 ) ; 
+      }
+   
+      $objLogger->doLogDebugMsg ( " STOP  doReadIssueFile" ) ;
+      return ( $ret , $msg , $str_input_file ) ; 
 	}
 	# eof sub doConvertMdFileToBigSqlHash
 	
@@ -83,7 +101,8 @@ package PerlWrapper::App::Utils::ETL::PerlWrapper ;
 	# --------------------------------------------------------
 	sub doInitialize {
 		
-		$objLogger 	= "PerlWrapper::App::Utils::Logger"->new( \$appConfig ) ; 
+		$objLogger 	      = "PerlWrapper::App::Utils::Logger"->new( \$appConfig ) ; 
+		$objFileHandler 	= "PerlWrapper::App::Utils::IO::FileHandler"->new( \$appConfig ) ; 
 	}	
 	#eof sub doInitialize
 	

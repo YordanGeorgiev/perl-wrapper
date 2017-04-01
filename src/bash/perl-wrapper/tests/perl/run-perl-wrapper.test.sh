@@ -13,6 +13,11 @@ doTestRunPerlWrapper(){
 
 	# Action !!!	
 	bash src/bash/perl-wrapper/perl-wrapper.sh -a run-perl-wrapper
+   exit_code=$?
+	doLog " run-perl-wrapper.test-1 exit_code: $exit_code "
+
+   test -z "$sleep_interval" || sleep "$sleep_interval"
+   test $exit_code -ne 0 && return
 
 	doLog "DEBUG STOP  doTestRunPerlWrapper"
 

@@ -26,10 +26,10 @@ p($appConfig) ;
 
 ok ( $ProductBaseDir 		eq '/opt/csitea' ) ; 
 ok ( $ProductDir 				eq '/opt/csitea/perl-wrapper' ) ; 
-ok ( $ProductVersionDir 	eq '/opt/csitea/perl-wrapper/perl-wrapper.0.4.0.dev.ysg' ); 
-ok ( $ProductVersion 		eq '0.4.0' ); 
-ok ( $EnvironmentName 		eq 'perl-wrapper.0.4.0.dev.ysg' ); 
-ok ( $ProductType 			eq 'dev' ) ;
+ok ( $ProductVersionDir 	eq '/opt/csitea/perl-wrapper/perl-wrapper.1.1.5.tst.ysg' ); 
+ok ( $ProductVersion 		eq '1.1.5' ); 
+ok ( $EnvironmentName 		eq 'perl-wrapper.1.1.5.tst.ysg' ); 
+ok ( $ProductType 			eq 'tst' ) ;
 ok ( $ProductType 			ne 'tst' ) ;
 ok ( $ProductType 			ne 'prd' ) ;
 ok ( $ProductOwner 			eq 'ysg' ) ;
@@ -37,7 +37,7 @@ my $cmd_out						= `hostname -s` ;
 chomp ( $cmd_out ) ; 
 ok ( $HostName 				eq "$cmd_out" ) ;
 ok ( $ConfFile					eq 
-'/opt/csitea/perl-wrapper/perl-wrapper.0.4.0.dev.ysg/cnf/perl-wrapper.' . $cmd_out . '.cnf' ) ; 
+'/opt/csitea/perl-wrapper/perl-wrapper.1.1.5.tst.ysg/cnf/perl-wrapper.' . $cmd_out . '.cnf' ) ; 
 
 ok ( $ProductBaseDir 		eq $appConfig->{'ProductBaseDir'} ) ; 
 ok ( $ProductDir 				eq $appConfig->{'ProductDir'} ) ; 

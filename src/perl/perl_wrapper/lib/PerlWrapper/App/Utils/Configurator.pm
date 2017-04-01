@@ -40,7 +40,7 @@ package PerlWrapper::App::Utils::Configurator ;
 		# the default Log file
 		, LogFile =>            '%LogDir%/%ProductName%.log'
 		# the default chars separating the time from the txt
-		, LogTimeToTextSeparator =>'---'
+		, LogTimeToTextSeparator =>'###'
 		# whether or not to log to a file
 		, LogToFile =>          1
 		# the time format of the logging 

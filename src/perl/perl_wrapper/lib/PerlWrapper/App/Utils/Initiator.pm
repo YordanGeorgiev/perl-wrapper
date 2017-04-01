@@ -144,7 +144,7 @@ package PerlWrapper::App::Utils::Initiator ;
 
 		#doResolve the run dir where this scripts is placed
 		my $my_absolute_path = abs_path( $0 );
-		my $product_version_dir = '' ; 
+		my $product_instance_dir = '' ; 
 
 		#debug print "\$my_absolute_path is $my_absolute_path \n" ;
 		$my_absolute_path =~ m/^(.*)(\\|\/)(.*)/;
@@ -157,10 +157,10 @@ package PerlWrapper::App::Utils::Initiator ;
 			#print "\@DirParts : @DirParts \n" ; 
 		}
 		
-		$product_version_dir 					= join( '/' , @DirParts );
-		$ProductVersionDir 						= $product_version_dir ; 
-		$product_version_dir 					= $self->untaint ( $product_version_dir); 
-		$ProductVersionDir 						= $self->untaint ( $product_version_dir); 
+		$product_instance_dir 					= join( '/' , @DirParts );
+		$ProductVersionDir 						= $product_instance_dir ; 
+		$product_instance_dir 					= $self->untaint ( $product_instance_dir); 
+		$ProductVersionDir 						= $self->untaint ( $product_instance_dir); 
 		$self->{'ProductVersionDir'} 			= $ProductVersionDir ; 
 		$appConfig->{'ProductVersionDir'} 	= $ProductVersionDir ; 
 		$self->{'appConfig'} 				= $appConfig; 

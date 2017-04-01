@@ -1,6 +1,6 @@
-# check-perl-modules-prerequisites
-# check-perl-syntax
-# run-perl-tests
+check-perl-syntax
+run-perl-tests
+check-perl-modules-prerequisites
 run-perl-wrapper
 #create-full-7z-package
 #create-full-package

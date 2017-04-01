@@ -50,8 +50,18 @@ use PerlWrapper::App::Utils::ETL::PerlWrapper ;
 use PerlWrapper::App::Model::DbHandlerFactory ; 
 use PerlWrapper::App::Model::MariaDbHandler ; 
 
+my $module_trace                 = 0 ; 
 my $md_file 							= '' ; 
 my $rdbms_type 						= 'mariadb' ; #todo: parametrize to 
+my $input_file                   = '' ; 
+my $objInitiator                 = {} ; 
+my $appConfig                    = {} ; 
+my $objLogger                    = {} ; 
+my $objFileHandler               = {} ; 
+my $msg                          = q{} ; 
+my $objConfigurator              = {} ; 
+
+
 
 #
 # the main entry point of the application
@@ -59,25 +69,17 @@ my $rdbms_type 						= 'mariadb' ; #todo: parametrize to
 sub main {
 
 	print " perl_wrapper.pl START MAIN \n " ; 
-	
-	my $objInitiator 		= 'PerlWrapper::App::Utils::Initiator'->new();
-	my $appConfig 			= $objInitiator->get('AppConfig') ; 
-	p ( $appConfig  ) ; 
-	my $objConfigurator 	= 
-		'PerlWrapper::App::Utils::Configurator'->new( $objInitiator->{'ConfFile'} , \$appConfig ) ; 
-	my $objLogger 			= 'PerlWrapper::App::Utils::Logger'->new( \$appConfig ) ;
-		
-	$objLogger->doLogInfoMsg ( "START MAIN") ; 
-	$objLogger->doLogInfoMsg ( "START LOGGING SETTINGS ") ; 
-	p ( $appConfig  ) ; 
-	$objLogger->doLogInfoMsg ( "STOP  LOGGING SETTINGS ") ; 
+   doInitialize();	
 
-		GetOptions(	
-			 "rdbms_type"		=>\$rdbms_type
-		);
-	
-	my $objPerlWrapper 				= 'PerlWrapper::App::Utils::ETL::PerlWrapper'->new ( \$appConfig ) ; 
-	my ( $ret , $msg ) 	= $objPerlWrapper->doCallExampleMethod ( $md_file ) ; 
+   GetOptions(	
+      'input_file=s' => \$input_file
+   );
+   $objLogger->doLogInfoMsg ( "input_file: $input_file" ) ; 
+
+	my $objPerlWrapper 	   = 'PerlWrapper::App::Utils::ETL::PerlWrapper'->new ( \$appConfig ) ; 
+	my ( $ret , $msg , $str_input_file ) 
+                     	   = $objPerlWrapper->doReadIssueFile ( $input_file ) ; 
+   doExit ( $ret , $msg ) if $ret != 0 ;  
 
 	# my $objDbHandlerFactory = 'PerlWrapper::App::Model::DbHandlerFactory'->new( \$appConfig );
 	# my $objDbHandler 			= $objDbHandlerFactory->doInstantiate ( "$rdbms_type" );
@@ -89,6 +91,40 @@ sub main {
 }
 #eof sub main
 
+
+sub doInitialize {
+
+	$objInitiator 		= 'PerlWrapper::App::Utils::Initiator'->new();
+	$appConfig 			= $objInitiator->get('AppConfig') ; 
+	p ( $appConfig  ) if $module_trace == 1 ; 
+	$objConfigurator 	= 
+		'PerlWrapper::App::Utils::Configurator'->new( $objInitiator->{'ConfFile'} , \$appConfig ) ; 
+	$objLogger 			= 'PerlWrapper::App::Utils::Logger'->new( \$appConfig ) ;
+
+		
+	$objLogger->doLogInfoMsg ( "START MAIN") ; 
+	$objLogger->doLogInfoMsg ( "START LOGGING SETTINGS ") ; 
+	p ( $appConfig  ) ; 
+	$objLogger->doLogInfoMsg ( "STOP  LOGGING SETTINGS ") ; 
+
+}
+
+
+sub doExit {
+   my $exit_code = shift ; 
+   my $exit_msg  = shift ; 
+
+
+   if ( $exit_code == 0 ) {
+      $objLogger->doLogInfoMsg ( $msg ) ;       
+   } else {
+
+      $objLogger->doLogErrorMsg ( $msg ) ;       
+      $objLogger->doLogFatalMsg ( $msg ) ;       
+   }
+
+   exit ( $exit_code ) ; 
+}
 
 # Action !!!
 main () ; 
