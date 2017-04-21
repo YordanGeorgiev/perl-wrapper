@@ -34,7 +34,7 @@ package PerlWrapper::App::Utils::Configurator ;
 		# Whether or not to pring TRACE messages
 		, PrintTraceMsgs =>                 1 
 		# The logging directory 
-		, LogDir => '%ProductVersionDir%/dat/log'
+		, LogDir => '%ProductInstanceDir%/dat/log'
 		# the environment name of this product instance 
 		, EnvironmentName =>   	'%ProductName%.%ProductVersion%.%ProductType%.%ProductOwner%'
 		# the default Log file
@@ -162,7 +162,7 @@ package PerlWrapper::App::Utils::Configurator ;
 
 			#debug print " AFTER 2 \$prt1 IS $prt1 ,\$value IS $value,\$prt2 IS $prt2 \n"; 
 			#v.1.2.8 --- ysg --- replace the env vars as well 
-			if ( defined ($ENV{"$value"})) {
+			if ( defined ( $value ) && defined ($ENV{"$value"})) {
 				$Value =~ s/\%$value\%/$ENV{"$value"}/gi;
 				#"%-40s %-80s"
 				##debug printf ("%20s %-30s %-100s " , 'EnvVarName = EnvVarValue' , "$value" , "$ENV{$value}") ; 
@@ -171,13 +171,14 @@ package PerlWrapper::App::Utils::Configurator ;
 
 			#debug print "BEFORE the cnfHolder key is " . "$key" . "\n" ; 
 			# at this point of time the $cnfHolder->{"$key"} might not even exist
-			
-			unless ( defined ( $cnfHolder->{"$value"} ) ) {
-				die "all cnfiguration variables should be defined in the cnf_file !!!" ; 
-			}
-			else {
-				$Value =~  s/\%$value\%/$cnfHolder->{"$value"}/gi
-			}
+		   if ( defined $value ) {	
+            unless ( defined ( $cnfHolder->{"$value"} ) ) {
+               die "all configuration variables should be defined in the cnf_file !!!" ; 
+            }
+            else {
+               $Value =~  s/%$value%/$cnfHolder->{"$value"}/gi
+            }
+         }
 
 			$cnfHolder->{"$key"} = $Value  ;
 

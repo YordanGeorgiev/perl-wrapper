@@ -1,18 +1,25 @@
 # file: cnf/perl-wrapper.doc-pub-host.cnf
 
+# multiple projects support
+perl_wrapper_project = perl-wrapper
+
 # The logging directory 
-LogDir = '%ProductVersionDir%/dat/log'
+LogDir = %ProductInstanceDir%/dat/log
 
 # the default Log file
-LogFile =            '%LogDir%/%ProductName%.log'
+LogFile =         %LogDir%/%ProductName%.log
+
 # the default chars separating the time from the txt
-LogTimeToTextSeparator ='---'
+LogTimeToTextSeparator = ###
+
 # whether or not to log to a file
 LogToFile =          1
+
 # the time format of the logging 
-TimeFormat =         'YYYY.MM.DD - hh:mm:ss'
+TimeFormat =         YYYY.MM.DD - hh:mm:ss
+
 # the time format of the logging 
-DbType 	=         'mariadb'
+DbType 	=         mariadb
 
 # the log file
 LogFile=%LogDir%/%ProductName%.%YYYY%.%MM%.%DD%.log
@@ -20,14 +27,14 @@ LogFile=%LogDir%/%ProductName%.%YYYY%.%MM%.%DD%.log
 # the host on which the mariadb is running 
 db_host = doc-pub-host
 
-# the mariadb server port 
+# the pgsql port
 db_port = 13306
 
-# the mariadb user name
-db_user = root
+# OBS ! dev , tst , prd product instances to own db !
+db_name   = %ProductType%_perl_wrapper
 
-# the mariadb user pw 
-db_user_pw = 0024plapla
+# the mariadb user name
+db_user = ysg
 
 # Whether or not to print messages to STDOUT and / or STDERR
 PrintConsoleMsgs =               1
@@ -47,6 +54,4 @@ PrintDebugMsgs =                 1
 # Whether or not to pring TRACE messages
 PrintTraceMsgs =                 1 
 
-# the environment name of this product instance 
-EnvironmentName =   	'%ProductName%.%ProductVersion%.%ProductType%.%ProductOwner%'
 # eof file: cnf/perl-wrapper.doc-pub-host.cnf

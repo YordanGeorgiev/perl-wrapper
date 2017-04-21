@@ -23,8 +23,8 @@ package PerlWrapper::App::Utils::Initiator ;
 	our $RunDir 						= '' ; 
 	our $ProductBaseDir 				= '' ; 
 	our $ProductDir 					= '' ; 
-	our $ProductVersionDir 			= ''; 
-	our $EnvironmentName 			= '' ; 
+	our $ProductInstanceDir 			= ''; 
+	our $ProductInstanceEnvironment 			= '' ; 
 	our $ProductName 					= '' ; 
 	our $ProductType 					= '' ; 
 	our $ProductVersion 				= ''; 
@@ -136,7 +136,7 @@ package PerlWrapper::App::Utils::Initiator ;
 	# the product version dir is the dir where this product 
 	# instance is situated
 	# ---------------------------------------------------------
-	sub doResolveMyProductVersionDir {
+	sub doResolveMyProductInstanceDir {
 
 		my $self = shift;
 		my $msg  = ();
@@ -158,38 +158,38 @@ package PerlWrapper::App::Utils::Initiator ;
 		}
 		
 		$product_instance_dir 					= join( '/' , @DirParts );
-		$ProductVersionDir 						= $product_instance_dir ; 
+		$ProductInstanceDir 						= $product_instance_dir ; 
 		$product_instance_dir 					= $self->untaint ( $product_instance_dir); 
-		$ProductVersionDir 						= $self->untaint ( $product_instance_dir); 
-		$self->{'ProductVersionDir'} 			= $ProductVersionDir ; 
-		$appConfig->{'ProductVersionDir'} 	= $ProductVersionDir ; 
+		$ProductInstanceDir 						= $self->untaint ( $product_instance_dir); 
+		$self->{'ProductInstanceDir'} 			= $ProductInstanceDir ; 
+		$appConfig->{'ProductInstanceDir'} 	= $ProductInstanceDir ; 
 		$self->{'appConfig'} 				= $appConfig; 
 
-		return $ProductVersionDir;
+		return $ProductInstanceDir;
 	}
-	#eof sub doResolveMyProductVersionDir
+	#eof sub doResolveMyProductInstanceDir
 
 	#
 	# ---------------------------------------------------------
 	# the environment name is the dir identifying this product 
 	# instance from other product instances 
 	# ---------------------------------------------------------
-	sub doResolveMyEnvironmentName {
+	sub doResolveMyProductInstanceEnvironment {
 
 		my $self = shift;
 		my $msg  = ();
 
-		my $ProductVersionDir 	= $self->doResolveMyProductVersionDir();
-		$EnvironmentName 			= $ProductVersionDir ; 
-		$EnvironmentName 			=~ s#$ProductBaseDir\/##g ;
-		$EnvironmentName 			=~ s#(.*?)(\/|\\)(.*)#$3#g ;
-		$EnvironmentName 			= $self->untaint ( $EnvironmentName ); 
+		my $ProductInstanceDir 	= $self->doResolveMyProductInstanceDir();
+		$ProductInstanceEnvironment 			= $ProductInstanceDir ; 
+		$ProductInstanceEnvironment 			=~ s#$ProductBaseDir\/##g ;
+		$ProductInstanceEnvironment 			=~ s#(.*?)(\/|\\)(.*)#$3#g ;
+		$ProductInstanceEnvironment 			= $self->untaint ( $ProductInstanceEnvironment ); 
 
-		$appConfig->{ 'EnvironmentName' } 		= $EnvironmentName ; 
+		$appConfig->{ 'ProductInstanceEnvironment' } 		= $ProductInstanceEnvironment ; 
 		$self->{'appConfig'} 				= $appConfig; 
-		return $EnvironmentName;
+		return $ProductInstanceEnvironment;
 	}
-	#eof sub doResolveMyEnvironmentName
+	#eof sub doResolveMyProductInstanceEnvironment
 
 	#
 	# ---------------------------------------------------------
@@ -201,10 +201,10 @@ package PerlWrapper::App::Utils::Initiator ;
 		my $self = shift;
 		my $msg  = ();
 
-		my $EnvironmentName = $self->doResolveMyEnvironmentName();
+		my $ProductInstanceEnvironment = $self->doResolveMyProductInstanceEnvironment();
 
 		#fetch the the product name from the dir struct
-		my @tokens = split /\./ , $EnvironmentName ; 
+		my @tokens = split /\./ , $ProductInstanceEnvironment ; 
 		$ProductName = $tokens[0] ; 
 
 		$appConfig->{ 'ProductName' } 			= $ProductName ; 
@@ -225,11 +225,11 @@ package PerlWrapper::App::Utils::Initiator ;
 		my $msg  = ();
 		
 		my $ProductVersion	= '' ;
-		my $ProductVersionDir 		= $self->doResolveMyProductVersionDir();
-		my $EnvironmentName 			= $self->doResolveMyEnvironmentName();
+		my $ProductInstanceDir 		= $self->doResolveMyProductInstanceDir();
+		my $ProductInstanceEnvironment 			= $self->doResolveMyProductInstanceEnvironment();
 		
 
-		my @tokens 			= split /\./ , $EnvironmentName ; 
+		my @tokens 			= split /\./ , $ProductInstanceEnvironment ; 
 		$tokens [1] = $tokens [1] // '' ; 
 		$tokens [2] = $tokens [2] // '' ; 
 		$tokens [3] = $tokens [3] // '' ; 
@@ -257,9 +257,9 @@ package PerlWrapper::App::Utils::Initiator ;
 		my $self = shift;
 		my $msg  = ();
 
-		my $EnvironmentName = $self->doResolveMyEnvironmentName();
+		my $ProductInstanceEnvironment = $self->doResolveMyProductInstanceEnvironment();
 
-		my @tokens = split /\./ , $EnvironmentName ; 
+		my @tokens = split /\./ , $ProductInstanceEnvironment ; 
 		# the type of this environment - dev , test , dev , fb , prod next_line_is_templatized
 		my $ProductType = $tokens[4] ; 
 		#debug print "\n\n ProductType : $ProductType " ; 
@@ -285,9 +285,9 @@ package PerlWrapper::App::Utils::Initiator ;
 		my $self = shift;
 		my $msg  = ();
 
-		my $EnvironmentName = $self->doResolveMyEnvironmentName();
+		my $ProductInstanceEnvironment = $self->doResolveMyProductInstanceEnvironment();
 
-		my @tokens = split /\./ , $EnvironmentName ; 
+		my @tokens = split /\./ , $ProductInstanceEnvironment ; 
 		# the Owner of this environment - dev , test , dev , fb , prod next_line_is_templatized
 		# The username of the person developin this environment 
 		$ProductOwner = $tokens[5] ; 
@@ -329,11 +329,11 @@ package PerlWrapper::App::Utils::Initiator ;
 		my $self 						= shift;
 		my $msg  						= ();
 		
-		my $ProductVersionDir		= $self->doResolveMyProductVersionDir();
+		my $ProductInstanceDir		= $self->doResolveMyProductInstanceDir();
 		my $HostName					= $self->doResolveMyHostName();
 
 		# set the default ConfFile path if no cmd argument is provided
-		$ConfFile = "$ProductVersionDir/cnf/$ProductName.$HostName.cnf" ; 
+		$ConfFile = "$ProductInstanceDir/cnf/$ProductName.$HostName.cnf" ; 
 
 		$self->set('ConfFile' , $ConfFile) ; 
 		$appConfig->{'ConfFile'} 	= $ConfFile ; 
@@ -363,8 +363,8 @@ package PerlWrapper::App::Utils::Initiator ;
 		bless( $self, $class );    # Say: $self is a $class
 
 		$ProductBaseDir 			= $self->doResolveMyProductBaseDir();
-		$ProductVersionDir 		= $self->doResolveMyProductVersionDir();
-		$EnvironmentName 			= $self->doResolveMyEnvironmentName();
+		$ProductInstanceDir 		= $self->doResolveMyProductInstanceDir();
+		$ProductInstanceEnvironment = $self->doResolveMyProductInstanceEnvironment();
 		$ProductName 				= $self->doResolveMyProductName();
 		$ProductVersion 			= $self->doResolveMyProductVersion();
 		$ProductType 				= $self->doResolveMyProductType();

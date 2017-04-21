@@ -12,7 +12,7 @@ my $objInitiator 				= 'PerlWrapper::App::Utils::Initiator'->new();
 my $appConfig					= {} ;
 my $ProductBaseDir 			= $objInitiator->doResolveMyProductBaseDir();
 my $ProductDir 				= $objInitiator->doResolveMyProductDir();
-my $ProductVersionDir 		= $objInitiator->doResolveMyProductVersionDir();
+my $ProductInstanceDir 		= $objInitiator->doResolveMyProductInstanceDir();
 my $EnvironmentName 			= $objInitiator->doResolveMyEnvironmentName();
 my $ProductName 				= $objInitiator->doResolveMyProductName();
 my $ProductVersion 			= $objInitiator->doResolveMyProductVersion();
@@ -26,10 +26,10 @@ p($appConfig) ;
 
 ok ( $ProductBaseDir 		eq '/opt/csitea' ) ; 
 ok ( $ProductDir 				eq '/opt/csitea/perl-wrapper' ) ; 
-ok ( $ProductVersionDir 	eq '/opt/csitea/perl-wrapper/perl-wrapper.1.1.5.tst.ysg' ); 
-ok ( $ProductVersion 		eq '1.1.5' ); 
-ok ( $EnvironmentName 		eq 'perl-wrapper.1.1.5.tst.ysg' ); 
-ok ( $ProductType 			eq 'tst' ) ;
+ok ( $ProductInstanceDir 	eq '/opt/csitea/perl-wrapper/perl-wrapper.0.0.4.dev.ysg' ); 
+ok ( $ProductVersion 		eq '0.0.4' ); 
+ok ( $EnvironmentName 		eq 'perl-wrapper.0.0.4.dev.ysg' ); 
+ok ( $ProductType 			eq 'dev' ) ;
 ok ( $ProductType 			ne 'tst' ) ;
 ok ( $ProductType 			ne 'prd' ) ;
 ok ( $ProductOwner 			eq 'ysg' ) ;
@@ -37,11 +37,11 @@ my $cmd_out						= `hostname -s` ;
 chomp ( $cmd_out ) ; 
 ok ( $HostName 				eq "$cmd_out" ) ;
 ok ( $ConfFile					eq 
-'/opt/csitea/perl-wrapper/perl-wrapper.1.1.5.tst.ysg/cnf/perl-wrapper.' . $cmd_out . '.cnf' ) ; 
+'/opt/csitea/perl-wrapper/perl-wrapper.0.0.4.dev.ysg/cnf/perl-wrapper.' . $cmd_out . '.cnf' ) ; 
 
 ok ( $ProductBaseDir 		eq $appConfig->{'ProductBaseDir'} ) ; 
 ok ( $ProductDir 				eq $appConfig->{'ProductDir'} ) ; 
-ok ( $ProductVersionDir 	eq $appConfig->{'ProductVersionDir'} ) ; 
+ok ( $ProductInstanceDir 	eq $appConfig->{'ProductInstanceDir'} ) ; 
 ok ( $ProductVersion 		eq $appConfig->{'ProductVersion' } ); 
 ok ( $EnvironmentName 		eq $appConfig->{'EnvironmentName'} ); 
 ok ( $ProductType 			eq $appConfig->{'ProductType'} ) ;
