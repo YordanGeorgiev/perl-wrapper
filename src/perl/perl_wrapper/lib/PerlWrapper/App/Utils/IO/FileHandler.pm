@@ -70,14 +70,14 @@ package PerlWrapper::App::Utils::IO::FileHandler ;
             if ( defined ( $mode ) && $mode eq 'utf8' ) {
                open FILE, "<:utf8", "$file "
                  or cluck("failed to open \$file $file : $!");
-               $string = <FILE> or cluck $@ ; 
+               $string = <FILE> ;
                die "did not find utf8 string in file: $file" 
                   unless utf8::valid ( $string ) ; 
             }
             else {
                open FILE, "$file "
                  or cluck "failed to open \$file $file : $!" ; 
-               $string = <FILE> or cluck $@ ; 
+               $string = <FILE> ; 
             }
             close FILE;
 

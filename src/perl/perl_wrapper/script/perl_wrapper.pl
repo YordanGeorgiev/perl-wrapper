@@ -56,7 +56,6 @@ my $objInitiator                 = {} ;
 my $appConfig                    = {} ; 
 my $objLogger                    = {} ; 
 my $objFileHandler               = {} ; 
-my $msg                          = q{} ; 
 my $objConfigurator              = {} ; 
 my $actions                      = q{} ; 
 
@@ -138,7 +137,7 @@ my $actions                      = q{} ;
    sub doExit {
 
       my $exit_code = shift ; 
-      my $exit_msg  = shift ; 
+      my $msg  = shift ; 
 
 
       if ( $exit_code == 0 ) {
